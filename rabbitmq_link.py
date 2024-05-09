@@ -9,7 +9,7 @@ import base64
 import aio_pika
 from dotenv import load_dotenv
 
-import animation
+from animation import animation
 
 class QueueCommandConsumer(aiomisc.Service):
     def __init__(self, queue, exchange, routing_key, **kwargs):
@@ -35,6 +35,8 @@ class QueueCommandConsumer(aiomisc.Service):
                         message_payload['speed'],
                         (16, 16)
                     )
+            except Exception as e:
+                logging.exception(e)
             finally:
                 pass
 
